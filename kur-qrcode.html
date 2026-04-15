@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Code – Kur My Home SPA</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #f5efe6 0%, #e8d5c4 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+      max-width: 420px;
+      width: 100%;
+      padding: 36px 28px;
+      text-align: center;
+    }
+
+    .logo-icon { font-size: 48px; margin-bottom: 8px; display: block; }
+
+    h1 {
+      font-size: 20px;
+      color: #8b5e3c;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #aaa;
+      margin-bottom: 28px;
+    }
+
+    #qrcode {
+      display: inline-block;
+      padding: 16px;
+      background: #fff;
+      border: 3px solid #e5d9cd;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    #qrcode img, #qrcode canvas {
+      border-radius: 8px;
+    }
+
+    .url-box {
+      background: #faf7f4;
+      border: 1px solid #e5d9cd;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 12px;
+      color: #8b5e3c;
+      word-break: break-all;
+      margin-bottom: 20px;
+    }
+
+    .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: #8b5e3c;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-print:hover { background: #7a4f30; }
+
+    .instruction {
+      font-size: 12px;
+      color: #999;
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+
+    .highlight {
+      display: inline-block;
+      background: #f0ebe5;
+      color: #8b5e3c;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .btn-print, .instruction { display: none; }
+      .card { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <span class="logo-icon">🌿</span>
+  <h1>Kur My Home SPA</h1>
+  <p class="subtitle">Escaneie para receber nossas novidades</p>
+
+  <div id="qrcode"></div>
+
+  <div class="url-box" id="urlDisplay">Carregando URL...</div>
+
+  <button class="btn-print" onclick="window.print()">
+    🖨️ Imprimir QR Code
+  </button>
+
+  <p class="instruction">
+    Aponte a câmera do celular para o QR Code acima.<br>
+    Você será redirecionado para a página de consentimento.<br><br>
+    <span class="highlight">🌿 matheusrdias.github.io/kur-spa</span>
+  </p>
+</div>
+
+<script>
+  const URL_DA_PAGINA = 'https://matheusrdias.github.io/kur-spa/kur-lgpd.html';
+
+  document.getElementById('urlDisplay').textContent = URL_DA_PAGINA;
+
+  new QRCode(document.getElementById('qrcode'), {
+    text: URL_DA_PAGINA,
+    width: 220,
+    height: 220,
+    colorDark: "#8b5e3c",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+
+</body>
+</html>
